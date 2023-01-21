@@ -1,11 +1,11 @@
 import Image from "next/image";
-import stageBgImg from "../../public/travelwith-bg.jpg";
+import stageBgImg from "../images/travelwith-bg.jpg";
 
 const Stage = () => {
   return (
     <div className="w-full h-full relative">
       <Image
-        src="/../public/travelwith-bg.jpg"
+        src={stageBgImg}
         alt="bg img"
         width={3636}
         height={3385}
