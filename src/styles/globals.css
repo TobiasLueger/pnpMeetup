@@ -114,4 +114,8 @@ a {
   h1 {
     @apply text-2xl text-white;
   }
+
+  p {
+    @apply text-white;
+  }
 }

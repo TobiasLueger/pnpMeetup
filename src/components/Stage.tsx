@@ -11,15 +11,10 @@ const Stage = () => {
         height={3385}
         className="object-cover w-full"
       ></Image>
-      <div className="absolute top-0">
-        <h1>TravelWith - Finde deine Fahrgemeinschaf</h1>
-        <p>
-          TravelWith ist die Plattform, auf der du einfach und schnell Leute
-          findest, mit denen du gemeinsam verreisen kannst. Spare Geld und
-          genieße die Gesellschaft, während du dein Ziel erreichst. Melde dich
-          jetzt an und finde deine nächste Fahrgemeinschaft!
-        </p>
-        <a className="btn">Jetzt anmelden</a>
+      <div className="absolute top-72 left-1/2 -translate-x-1/2">
+        <h1 className="italic font-bold text-3xl">
+          Finde deine Fahrgemeinschaf
+        </h1>
       </div>
     </div>
   );
