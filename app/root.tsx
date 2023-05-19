@@ -23,8 +23,12 @@ export const meta: MetaFunction = () => ({
 //   { rel: "stylesheet", href: stylesheet },
 // ];
 
-export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+export const links: LinksFunction = () => {
+  return [
+    { rel: "stylesheet", href: styles },
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous"},
+    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jua&display=swap"},
+  ]
 }
 
 export default function App() {
@@ -34,7 +38,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-[#0a0a0a] px-40">
+      <body className="bg-[#0a0a0a] px-5 lg:px-40 pt-[210px] lg:pt-[130px]">
         <Navigation/>
         <Outlet />
         <ScrollRestoration />

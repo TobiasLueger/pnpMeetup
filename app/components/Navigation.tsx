@@ -7,7 +7,7 @@ import logo from "../images/d20.png";
 
 const Navigation = () => {
   return (
-    <header className="sticky flex justify-between top-0 left-0 w-screen -ml-40 px-40 text-[#eee6e1] bg-[#0a0a0a] items-center z-50"> 
+    <header className="fixed flex flex-col pt-10 lg:pt-0 lg:flex-row justify-between top-0 left-0 w-screen px-5 lg:px-40 text-[#eee6e1] bg-[#0a0a0a] items-center z-50"> 
         <div>
             <a 
             href="/"
