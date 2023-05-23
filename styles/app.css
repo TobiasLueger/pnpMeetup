@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply text-[#eee6e1];
+    }
+    h1 {
+        @apply text-7xl lg:text-8xl uppercase font-black mt-12 lg:mt-24 mb-12;
+    }
+
+    fieldset {
+        @apply flex flex-col w-fit
+    }
+
+    fieldset input {
+        @apply aspect-square text-center rounded-xl w-28
+    }
+  }
