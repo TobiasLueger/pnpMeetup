@@ -26,8 +26,8 @@ export const meta: MetaFunction = () => ({
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: styles },
-    // { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous"},
-    // { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jua&display=swap"},
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous"},
+    { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jua&display=swap"},
   ]
 }
 
