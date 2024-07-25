@@ -13,7 +13,8 @@ export default function CharacterSheet() {
     {
       name: "htbah",
       link: "/character-sheet/htbah",
-      img: htbah
+      img: htbah,
+      out: true
     },
     {
       name: "pathfinder",
