@@ -6,7 +6,6 @@ import type { Character } from "~/models/dnd/character";
 import useFilteredItems from "~/hooks/dnd/useFilteredItems";
 import type { Item } from "~/models/dnd/item";
 import type { Source } from "~/models/dnd/source";
-import { useParams } from "@remix-run/react";
 import { X } from "@phosphor-icons/react";
 
 interface ItemProp {

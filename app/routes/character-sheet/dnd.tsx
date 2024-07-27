@@ -21,7 +21,7 @@ import type { Alignment } from "~/models/dnd/alignment";
 import type { Background } from "~/models/dnd/background";
 import type { Character } from "~/models/dnd/character";
 import type { Equipment } from "~/models/dnd/equipment";
-import { Item } from "~/models/dnd/item";
+import type { Item } from "~/models/dnd/item";
 import type { LifeClass } from "~/models/dnd/lifeClass";
 import type { Race } from "~/models/dnd/race";
 import type { Size } from "~/models/dnd/size";
@@ -29,6 +29,11 @@ import type { SubRace } from "~/models/dnd/subRace";
 
 export default function DnD() {
     const { id } = useParams();
+
+    
+    // const id = "khhad5rasdra5d6";
+
+    
 
     const [loadedCharacter, setLoadedCharacter] = useState<Character | undefined>(undefined);
 

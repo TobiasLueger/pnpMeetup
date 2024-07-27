@@ -11,7 +11,7 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "api/index.js",
   // publicPath: "/build/",
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  },
+  // resolve: {
+  //   extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  // },
 };
