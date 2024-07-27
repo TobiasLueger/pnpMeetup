@@ -6,6 +6,7 @@ import { getBonusFromValue, getCharacterArmorClass, getCharacterFullAbilityScore
 import EquipmentRecommendation from "./EquipmentRecommendation";
 import type { Equipment } from "~/models/dnd/equipment";
 import type { Character } from "~/models/dnd/character";
+import { useCharactersContext } from "~/hooks/dnd/useCharactersContext";
 
 export enum EquipmentCategory {
     WEAPON = "WEAPON",
@@ -18,11 +19,13 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
     const [characterEquipment, setCharacterEquipment] = useState<Equipment[] | undefined>(undefined);
     const [selectedEquipment,  setSelectedEquipment] = useState<string | undefined>(undefined);
 
+    // const { characters, setCharacters } = useCharactersContext();
+
     useEffect(() => {
         if (character && equipment) {
-            console.log(character, equipment)
             setCharacterEquipment(equipment[character.id]);
         }
+        console.log("Character:", character)
     }, [character, equipment]);
 
     return (
@@ -37,7 +40,10 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                     </tr>
                 </thead>
                 <tbody>
-                    {characterEquipment && characterEquipment?.length > 0 && characterEquipment?.filter(f => {
+                    
+                    {/* {console.log(character?.equipment && character?.equipment?.length > 0 ? character?.equipment : "no Equipment")}
+                    {characterEquipment && characterEquipment?.length > 0 && characterEquipment?.filter(f => { */}
+                    {character?.equipment && character?.equipment?.length > 0 && character?.equipment?.filter(f => {
                         if (!category) return true;
                         switch (category) {
                             case EquipmentCategory.WEAPON:

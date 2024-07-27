@@ -85,23 +85,23 @@ export default function Items({
         setGroupedBySourceItems(groupedItems);
     }, [items]);
 
-    const addEquipment = (item: Item, quantity: number) => {
-        if (loadedCharacter === undefined) return;
-        setEquipment((equipment) => {
-            const characterEquipment = equipment[loadedCharacter.id] ?? [];
-            const existingEquipment = characterEquipment.find(e => e.item.code === item.code);
-            if (existingEquipment) {
-                existingEquipment.quantity += quantity;
-            } else {
-                characterEquipment.push({
-                    item: item,
-                    quantity: quantity,
-                    equipped: false
-                });
-            }
-            return { ...equipment, [loadedCharacter.id]: characterEquipment };
-        });
-    }
+    // const addEquipment = (item: Item, quantity: number) => {
+    //     if (loadedCharacter === undefined) return;
+    //     setEquipment((equipment) => {
+    //         const characterEquipment = equipment[loadedCharacter.id] ?? [];
+    //         const existingEquipment = characterEquipment.find(e => e.item.code === item.code);
+    //         if (existingEquipment) {
+    //             existingEquipment.quantity += quantity;
+    //         } else {
+    //             characterEquipment.push({
+    //                 item: item,
+    //                 quantity: quantity,
+    //                 equipped: false
+    //             });
+    //         }
+    //         return { ...equipment, [loadedCharacter.id]: characterEquipment };
+    //     });
+    // }
 
     return (
         <div className={`${openStateVar ? "fixed" : "hidden"} w-[80%] h-[80%] left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 overflow-scroll bg-slate-800 z-10 rounded-3xl px-10 pt-5`}>
@@ -193,7 +193,7 @@ export default function Items({
                                                                             }} />
                                                                             <button 
                                                                                 onClick={() => {
-                                                                                    addEquipment(item, itemQuantityAdd.get(item.code) ?? 0);
+                                                                                    addNewEquipment(item, itemQuantityAdd.get(item.code) ?? 0);
                                                                                     console.log(item, itemQuantityAdd.get(item.code) ?? 0);
                                                                                     closeItem();
                                                                                 }} 

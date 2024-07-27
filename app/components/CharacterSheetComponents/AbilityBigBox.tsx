@@ -48,7 +48,7 @@ export default function AbilityBigBox({ character, ability, onValueChange }: { c
                 <div className='h-4 w-full'></div>
             </div>
             <div className='border w-min px-2 rounded-full text-2xs mx-auto bottom-6 -mt-2 bg-gray-800'>
-                <input value={innerValue} onChange={(event) => onValueChange(parseInt(event.target.value))} className='w-4 text-white rounded bg-gray-800 outline-transparent focus:outline-transparent text-center border-none focus:border-none ring-transparent focus:ring-transparent' />
+                <input value={innerValue} onChange={(event) => onValueChange(parseInt(event.target.value))} className='w-5 text-white rounded bg-gray-800 outline-transparent focus:outline-transparent text-center border-none focus:border-none ring-transparent focus:ring-transparent' />
             </div>
             <Tooltip id={`bonus_tooltip_${ability.code}`} className='z-50' render={() => {
                 return (

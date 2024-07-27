@@ -9,7 +9,7 @@ export default function ClassSelect({ characterClass, onClassChange }: { charact
     const classes = useClasses();
     
     return (
-        <select className='text-xs px-2 text-white rounded bg-gray-800 outline-transparent focus:outline-transparent w-full max-w-full' value={characterClass?.code} onChange={(e) => onClassChange(classes.find(r => r.code === e.target.value))}>
+        <select className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' value={characterClass?.code} onChange={(e) => onClassChange(classes.find(r => r.code === e.target.value))}>
             {Object.entries(groupBy(classes, (r: LifeClass) => r.source?.code ?? 'undefined')).sort(([source,]) => {
                 if (source === 'PHB' || source === 'DMG') return -1;
                 if (source === undefined || source === 'undefined' || source === '') return 1;

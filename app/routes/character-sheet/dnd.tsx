@@ -49,7 +49,6 @@ export default function DnD() {
 
     useEffect(() => {
         if (loadedCharacter === undefined) return;
-        console.log(loadedCharacter)
         setCharacters((characters) => {
             return { ...characters, [loadedCharacter.id]: loadedCharacter };
         });
@@ -127,6 +126,15 @@ export default function DnD() {
             setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), stats: newStats }));
         }
     }
+
+    const setCharacterEquipment = (item: Item, quantity: number) => {
+        if (loadedCharacter === undefined) return;
+        const newEquipment = loadedCharacter.equipment;
+        newEquipment.push({item: item, quantity: quantity, equipped: true});
+        setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), equipment: newEquipment }));
+    }
+
+    //TODO: Armor is not working
 
     const addEquipment = (characterId: string, itemCode: string, quantity: number) => {
         setEquipment((currentEquipment) => {
@@ -272,7 +280,7 @@ export default function DnD() {
                 <div className='w-[30%]'>
                     <div className='border rounded-l'>
                     <input 
-                        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
+                        className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
                         type='text' 
                         value={loadedCharacter?.name ?? ''} 
                         onChange={(event) => setCharacterName(event.target.value)}
@@ -290,7 +298,7 @@ export default function DnD() {
                     </div>
                     <div>
                         <input 
-                        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
+                        className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' 
                         type='text' 
                         value={loadedCharacter?.level ?? '1'} 
                         onChange={(event) => setCharacterLevel(parseInt(event.target.value))}
@@ -426,22 +434,27 @@ export default function DnD() {
                                     </div>
                                     <div className='w-1/3 rounded border flex flex-col justify-between gap-y-2'>
                                         <div className='h-2'></div>
-                                        <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' type='text' />
+                                        <input className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' type='text' />
                                         <div className='text-3xs uppercase'>Geschwindigkeit</div>
                                     </div>
                                 </div>
                                 <div className='rounded-t-md border px-2 py-2 space-y-2'>
-                                    <div className='flex space-x-2 items-center'><div className='text-3xs whitespace-nowrap'>Maximale Trefferpunkte: </div><input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' /></div>
-                                    <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
+                                    <div className='flex space-x-2 items-center'>
+                                        <div className='text-3xs whitespace-nowrap'>Maximale Trefferpunkte: </div>
+                                        <input className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
+                                    </div>
+                                    <input className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
                                     <div className='text-3xs uppercase text-center'>Aktuelle Trefferpunkte</div>
                                 </div>
                                 <div className='rounded-b-md border px-2 py-2 space-y-2'>
-                                    <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
+                                    <input className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' />
                                     <div className='text-3xs uppercase text-center'>Temporäre Trefferpunkte</div>
                                 </div>
                                 <div className='flex'>
                                     <div className='w-1/2 rounded-md border px-2 py-2 space-y-2'>
-                                        <div className='flex space-x-2 items-center'><div className='text-3xs whitespace-nowrap'>Gesamt</div><input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' /></div>
+                                        <div className='flex space-x-2 items-center'>
+                                            <div className='text-3xs whitespace-nowrap'>Gesamt</div>
+                                            <input className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' /></div>
                                         <div className='text-3xs uppercase text-center'>Trefferwürfel</div>
                                     </div>
                                     <div className='w-1/2 rounded-md border px-2 py-2 space-y-2'>
@@ -492,7 +505,7 @@ export default function DnD() {
                     </div>
                     <div className='w-full'>
                         <div className='rounded-md border flex flex-col'>
-                            <div className="flex items-center justify-end text-sm px-1 py-0.5"><div>Gesamtlast: {equipment?.[loadedCharacter?.id ?? '']?.map(m => m.item.weight ?? 0).reduce((prev, curr) => prev + curr, 0)}/{(loadedCharacter?.stats.abilities['STR']?.value ?? 0) * 15} lb.</div></div>
+                            <div className="flex items-center justify-end text-sm px-1 py-0.5"><div>Gesamtlast: {loadedCharacter?.equipment?.map(m => m.item.weight ?? 0).reduce((prev, curr) => prev + curr, 0)}/{(loadedCharacter?.stats.abilities['STR']?.value ?? 0) * 15} lb.</div></div>
                             <div>Waffen</div>
                             <div className='flex-grow'>
                                 <EquipmentBox category={EquipmentCategory.WEAPON} character={loadedCharacter} equipment={equipment} onEquipmentAdd={addEquipment} onEquipmentDelete={deleteEquipment} onEquipmentToggle={toggleEquipment} />
@@ -531,7 +544,7 @@ export default function DnD() {
                         </div>
                     </div>
                     {itemOpenState &&
-                        <Items type={itemType} openState={itemOpenState} closeItem={closeItem} addNewEquipment={addNewEquipment} id={id} />
+                        <Items type={itemType} openState={itemOpenState} closeItem={closeItem} addNewEquipment={setCharacterEquipment} id={id} />
                     }
                 </div>
             </div>

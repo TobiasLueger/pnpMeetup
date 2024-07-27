@@ -1,13 +1,14 @@
-import { Stats } from "../contexts/CharactersContext";
-import { Alignment } from "./alignment";
-import { Background } from "./background";
-import { Die } from "./die";
-import { Equipment } from "./equipment";
-import { Language } from "./language";
-import { LifeClass } from "./lifeClass";
-import { Race } from "./race";
-import { Size } from "./size";
-import { SubRace } from "./subRace";
+import type { Stats } from "~/contexts/dnd/CharactersContext";
+import type { Alignment } from "./alignment";
+import type { Background } from "./background";
+import type { LifeClass } from "./lifeClass";
+import type { Race } from "./race";
+import type { Size } from "./size";
+import type { SubRace } from "./subRace";
+import type { Die } from "./die";
+import type { Language } from "./language";
+import type { Equipment } from "./equipment";
+
 
 export interface Character {
     id: string;

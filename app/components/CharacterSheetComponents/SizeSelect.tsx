@@ -6,7 +6,7 @@ export default function SizeSelect({ size, onSizeChange }: { size: Size | undefi
     const sizes = useSizes();
 
     return (
-        <select className='text-xs px-2 text-white rounded bg-gray-800 outline-transparent focus:outline-transparent w-full max-w-full' value={size?.code} onChange={(e) => onSizeChange(sizes.find(f => f.code === e.target.value))}>
+        <select className='bg-slate-700 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' value={size?.code} onChange={(e) => onSizeChange(sizes.find(f => f.code === e.target.value))}>
             {sizes.map(size => {
                 return (
                     <option key={'size_' + size.code} value={size.code}>{size.name ?? size.originalName}</option>

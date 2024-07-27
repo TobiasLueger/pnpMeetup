@@ -1,4 +1,3 @@
-import Navigation from "~/components/Navigation";
 import hero from "../images/dice_hero.png";
 import { useState } from "react";
 import logo from "../images/d20.png";
@@ -21,7 +20,7 @@ export default function Index() {
         <div className="w-full uppercase font-black text-2xl flex flex-col gap-4 mt-10 lg:mt-0">
           <span className="text-center lg:text-left">
             Roll your favorite
-            <span className="text-[#cbe458] underline cursor-pointer mx-2" onClick={rollDice}>dice</span>
+            <button className="text-[#cbe458] underline uppercase cursor-pointer mx-2" onClick={rollDice}>dice</button>
             now
           </span>
           <div className="text-3xl relative cursor-pointer" onClick={rollDice}><img src={logo} className={`rotate-12 w-1/2 lg:w-full mx-auto lg:mx-0`}/><span className="absolute text-[#0a0a0a] block top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2" style={{fontFamily: "Jua"}}>{randomeNumber}</span></div>

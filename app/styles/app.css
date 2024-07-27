@@ -638,6 +638,10 @@ fieldset input {
   z-index: 50;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
 .mx-0 {
   margin-left: 0px;
   margin-right: 0px;
@@ -768,6 +772,10 @@ fieldset input {
   height: 1rem;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .h-6 {
   height: 1.5rem;
 }
@@ -786,10 +794,6 @@ fieldset input {
 
 .h-full {
   height: 100%;
-}
-
-.h-5 {
-  height: 1.25rem;
 }
 
 .max-h-40 {
@@ -873,6 +877,10 @@ fieldset input {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .max-w-full {
@@ -1078,6 +1086,11 @@ fieldset input {
   border-color: rgb(203 228 88 / var(--tw-border-opacity));
 }
 
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 .border-slate-500 {
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity));
@@ -1088,11 +1101,6 @@ fieldset input {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-.border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
 .bg-\[\#0a0a0a\] {
   --tw-bg-opacity: 1;
   background-color: rgb(10 10 10 / var(--tw-bg-opacity));
@@ -1101,6 +1109,11 @@ fieldset input {
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .bg-gray-500 {
@@ -1178,11 +1191,6 @@ fieldset input {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-gray-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
@@ -1200,12 +1208,16 @@ fieldset input {
   padding: 0.5rem;
 }
 
+.p-2\.5 {
+  padding: 0.625rem;
+}
+
 .p-5 {
   padding: 1.25rem;
 }
 
-.p-2\.5 {
-  padding: 0.625rem;
+.p-0 {
+  padding: 0px;
 }
 
 .px-1 {
@@ -1368,6 +1380,11 @@ fieldset input {
   color: rgb(238 230 225 / var(--tw-text-opacity));
 }
 
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
@@ -1391,11 +1408,6 @@ fieldset input {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-gray-900 {
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1489,13 +1501,13 @@ fieldset input {
   outline-color: transparent;
 }
 
-.focus\:ring-transparent:focus {
-  --tw-ring-color: transparent;
-}
-
 .focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-transparent:focus {
+  --tw-ring-color: transparent;
 }
 
 .group:hover .group-hover\:scale-105 {
