@@ -25,7 +25,6 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
         if (character && equipment) {
             setCharacterEquipment(equipment[character.id]);
         }
-        console.log("Character:", character)
     }, [character, equipment]);
 
     return (
@@ -40,9 +39,6 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    {/* {console.log(character?.equipment && character?.equipment?.length > 0 ? character?.equipment : "no Equipment")}
-                    {characterEquipment && characterEquipment?.length > 0 && characterEquipment?.filter(f => { */}
                     {character?.equipment && character?.equipment?.length > 0 && character?.equipment?.filter(f => {
                         if (!category) return true;
                         switch (category) {
@@ -64,13 +60,14 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                                     }} className={"h-3 w-3 hover:text-slate-300 cursor-pointer"} /></td>
                                     <td className='border p-1 flex items-center justify-between'>
                                         <div>{item.item.name ?? item.item.originalName}</div>
-                                        { category === EquipmentCategory.ARMOR && <EquipmentRecommendation dex={character ? getCharacterFullAbilityScore(character, 'dex') : 10} currentEquipment={characterEquipment} selectedEquipment={item} /> }
+                                        { category === EquipmentCategory.ARMOR && <EquipmentRecommendation dex={character ? getCharacterFullAbilityScore(character, 'dex') : 10} currentEquipment={character?.equipment} selectedEquipment={item} /> }
                                     </td>
                                     <td className='border'>
                                         <div className='flex items-center space-x-1'>
                                             <div className='flex-grow p-1'>{item.quantity}</div>
                                             <div className='aspect-square cursor-pointer bg-slate-500 hover:bg-slate-600 rounded p-1'>
                                                 <MinusCircle className={"h-3 w-3 cursor-pointer"} onClick={() => {
+                                                    console.log("onEquipmentAdd: ", character)
                                                     if (!character) return;
                                                     onEquipmentAdd(character.id, item.item.code, -1)
                                                 }} />
@@ -111,7 +108,7 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                                                                                     : getBonusFromValue({ base: character ? getCharacterFullAbilityScore(character, 'dex') : 10 })?.value)
                                                                                 : 0
                                                                         : (item.item.shield ?
-                                                                            getCharacterArmorClass(character, characterEquipment, false)
+                                                                            getCharacterArmorClass(character, character?.equipment, false)
                                                                             : 0)) + (item.item.ac ?? 0)
                                                                 }</span>
                                                             <div className='text-slate-300 text-2xs'>Formel: {item.item.armor && !item.item.shield
@@ -123,7 +120,7 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                                                                             : getBonusFromValue({ base: character ? getCharacterFullAbilityScore(character, 'dex') : 10 })?.absoluteValue) + ']'
                                                                         : ''}`
                                                                 : (item.item.shield ?
-                                                                    `CA [${getCharacterArmorClass(character, characterEquipment, false)}] + ${item.item.ac}` : `+ ${item.item.ac ?? 0}`)}</div>
+                                                                    `CA [${getCharacterArmorClass(character, character?.equipment, false)}] + ${item.item.ac}` : `+ ${item.item.ac ?? 0}`)}</div>
                                                         </div>
                                                     </div>
                                                 )
@@ -134,7 +131,7 @@ export default function EquipmentBox({ character, equipment, onEquipmentAdd, onE
                             </React.Fragment>);
                     })}
                     {
-                        (!characterEquipment || characterEquipment?.length === 0) && <tr>
+                        (!character?.equipment || character?.equipment?.length === 0) && <tr>
                             <td className='border p-1 mx-4 text-center text-slate-300' colSpan={4}>Keine Gegenstände in der Ausrüstung</td>
                         </tr>
                     }

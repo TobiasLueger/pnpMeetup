@@ -193,7 +193,6 @@ export default function Items({
                                                                             <button 
                                                                                 onClick={() => {
                                                                                     addNewEquipment(item, itemQuantityAdd.get(item.code) ?? 0);
-                                                                                    console.log(item, itemQuantityAdd.get(item.code) ?? 0);
                                                                                     closeItem();
                                                                                 }} 
                                                                                 className='ml-2 rounded-lg bg-slate-600 hover:bg-slate-500 px-3 py-2'

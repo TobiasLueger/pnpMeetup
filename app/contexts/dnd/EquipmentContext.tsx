@@ -23,27 +23,27 @@ export const EquipmentProvider: React.FC<PropsWithChildren<unknown>> = ({ childr
         setEquipment((equipment) => {
             const newEquipment = { ...equipment };
             delete newEquipment[id];
-            window.localStorage.setItem('equipment', JSON.stringify(newEquipment));
+            localStorage.setItem('equipment', JSON.stringify(newEquipment));
             return newEquipment;
         });
     };
 
     useEffect(() => {
-        const storedEquipment = window.localStorage.getItem('equipment');
+        const storedEquipment = localStorage.getItem('equipment');
         if (storedEquipment !== null) {
             setEquipment(JSON.parse(storedEquipment));
         }
     }, []);
 
     useEffect(() => {
-        if (JSON.stringify(equipment) === window.localStorage.getItem('equipment') || Object.values(equipment).length === 0) return;
-        window.localStorage.setItem('equipment', JSON.stringify(equipment));
+        if (JSON.stringify(equipment) === localStorage.getItem('equipment') || Object.values(equipment).length === 0) return;
+        localStorage.setItem('equipment', JSON.stringify(equipment));
     }, [equipment]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            console.log("Equipment local storage")
-            const storedEquipment = window.localStorage.getItem('equipment');
+            // console.log("Equipment local storage")
+            const storedEquipment = localStorage.getItem('equipment');
             if (storedEquipment !== null && JSON.stringify(equipment) !== storedEquipment) {
                 setEquipment(JSON.parse(storedEquipment));
             }

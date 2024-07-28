@@ -10,8 +10,8 @@ interface CharactersState {
 
 const defaultCharactersState: CharactersState = {
     characters: {},
-    setCharacters: () => { },
-    deleteCharacter: (id: string) => { console.log('deleteCharacter not implemented', id); return () => { } },
+    setCharacters: () => {},
+    deleteCharacter: (id: string) => { console.log('deleteCharacter not implemented', id); return () => {} },
 }
 
 export type PlayersStats = Record<string, Stats>;
@@ -31,29 +31,27 @@ export const CharactersProvider: React.FC<PropsWithChildren<unknown>> = ({ child
         setCharacters((characters) => {
             const newCharacters = { ...characters };
             delete newCharacters[id];
-            window.localStorage.setItem('characters', JSON.stringify(newCharacters));
+            localStorage.setItem('characters', JSON.stringify(newCharacters));
             return newCharacters;
         });
 
     };
 
     useEffect(() => {
-        const storedCharacters = window.localStorage.getItem('characters');
+        const storedCharacters = localStorage.getItem('characters');
         if (storedCharacters !== null) {
             setCharacters(JSON.parse(storedCharacters));
         }
     }, []);
 
     useEffect(() => {
-        if (JSON.stringify(characters) === window.localStorage.getItem('characters') || Object.values(characters).length === 0) return;
-        console.log("Character local storage")
-        window.localStorage.setItem('characters', JSON.stringify(characters));
+        if (JSON.stringify(characters) === localStorage.getItem('characters') || Object.values(characters).length === 0) return;
+        localStorage.setItem('characters', JSON.stringify(characters));
     }, [characters]);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            // console.log("Character local storage")
-            const storedCharacters = window.localStorage.getItem('characters');
+            const storedCharacters = localStorage.getItem('characters');
             if (storedCharacters !== null && JSON.stringify(characters) !== storedCharacters) {
                 setCharacters(JSON.parse(storedCharacters));
             }

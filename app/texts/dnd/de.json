@@ -113,10 +113,10 @@
     "sizes": {
         "T": "winzig (<0,5m)",
         "S": "klein (0,5-1m)",
-        "M": "normal (1-3m)",
+        "M": "mittelgroß (1-3m)",
         "L": "groß (3-6m)",
         "H": "riesig (6-12m)",
-        "G": "gewaltig (<12m)"
+        "G": "gewaltig (>12m)"
     },
     "backgrounds": {
         "ACOLYTE": "Tempeldiener",

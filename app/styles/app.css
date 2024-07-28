@@ -875,6 +875,10 @@ fieldset input {
   width: 100vw;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
 .max-w-full {
   max-width: 100%;
 }
@@ -1348,6 +1352,10 @@ fieldset input {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
 .text-\[\#0a0a0a\] {
   --tw-text-opacity: 1;
   color: rgb(10 10 10 / var(--tw-text-opacity));
@@ -1386,6 +1394,11 @@ fieldset input {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1464,6 +1477,16 @@ fieldset input {
 .hover\:text-slate-300:hover {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+
+.hover\:text-blue-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.hover\:text-red-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
 .focus\:border-none:focus {

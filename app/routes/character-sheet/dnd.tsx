@@ -57,7 +57,9 @@ export default function DnD() {
         setCharacters((characters) => {
             return { ...characters, [loadedCharacter.id]: loadedCharacter };
         });
-        localStorage.setItem(loadedCharacter.id,  JSON.stringify(loadedCharacter));
+        console.log("Characters: ->", loadedCharacter)
+        // localStorage.setItem(loadedCharacter.id,  JSON.stringify(loadedCharacter));
+        // localStorage.setItem("characters",  JSON.stringify({ ...characters, [loadedCharacter.id]: loadedCharacter }));
     }, [loadedCharacter, setCharacters]);
 
     const changeAbilityValue = (abilityCode: string, newValue: number) => {
@@ -135,61 +137,34 @@ export default function DnD() {
     const setCharacterEquipment = (item: Item, quantity: number) => {
         if (loadedCharacter === undefined) return;
         const newEquipment = loadedCharacter.equipment;
-        newEquipment.push({item: item, quantity: quantity, equipped: true});
+        newEquipment.push({item: item, quantity: quantity, equipped: false});
         setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), equipment: newEquipment }));
     }
 
-    //TODO: Armor is not working
-
     const addEquipment = (characterId: string, itemCode: string, quantity: number) => {
-        setEquipment((currentEquipment) => {
-            const characterEquipment = currentEquipment[characterId] ?? [];
-            const existingItem = characterEquipment.find(f => f.item.code === itemCode);
-            if (existingItem !== undefined) {
-                existingItem.quantity = (existingItem?.quantity ?? 0) + quantity;
-            }
-            const newEquipment = existingItem !== undefined ? [...characterEquipment.filter(f => f.item.code !== itemCode), { ...existingItem }] : [...characterEquipment];
-            return {
-                ...currentEquipment,
-                [characterId]: [
-                    ...newEquipment
-                ]
-            }
-        })
-    }
-    const addNewEquipment = (item: Item, quantity: number) => {
         if (loadedCharacter === undefined) return;
-        console.log(loadedCharacter)
-        setEquipment((equipment) => {
-            const characterEquipment = equipment[loadedCharacter.id] ?? [];
-            const existingEquipment = characterEquipment.find(e => e.item.code === item.code);
-            if (existingEquipment) {
-                existingEquipment.quantity += quantity;
-            } else {
-                characterEquipment.push({
-                    item: item,
-                    quantity: quantity,
-                    equipped: false
-                });
-            }
-            return { ...equipment, [loadedCharacter.id]: characterEquipment };
-        });
+        const currentEquipment = loadedCharacter.equipment;
+        const existingItem = currentEquipment.find(f => f.item.code === itemCode);
+        if (existingItem !== undefined) {
+            existingItem.quantity = (existingItem?.quantity ?? 0) + quantity;
+        }
+        const newEquipment = existingItem !== undefined ? [...currentEquipment.filter(f => f.item.code !== itemCode), { ...existingItem }] : [...currentEquipment];
+        setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), equipment: newEquipment }));
     }
 
     const deleteEquipment = (characterId: string, itemCode: string) => {
-        setEquipment((currentEquipment) => {
-            return {
-                ...currentEquipment,
-                [characterId]: [
-                    ...currentEquipment[characterId].filter(f => f.item.code !== itemCode),
-                ]
-            }
-        })
+        if (loadedCharacter === undefined) return;
+        const currentEquipment = loadedCharacter.equipment;
+        setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), equipment: 
+            currentEquipment.filter(f => f.item.code !== itemCode)
+        }));
     }
 
     const toggleEquipment = (equipment: Equipment) => {
-        setEquipment((currentEquipment) => {
-            let characterEquipment = currentEquipment?.[loadedCharacter?.id ?? ''] ?? [];
+        console.log("toggleEquipment: ", equipment)
+        if (loadedCharacter === undefined) return;
+        const currentEquipment = loadedCharacter.equipment;
+        let characterEquipment = currentEquipment ?? [];
             if (equipment.item.weapon) {
                 if (!characterEquipment) return currentEquipment;
                 characterEquipment = characterEquipment.map((item) => {
@@ -234,12 +209,9 @@ export default function DnD() {
                     return item;
                 });
             }
-
-            return {
-                ...currentEquipment,
-                [loadedCharacter?.id ?? '']: characterEquipment
-            }
-        });
+            setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), equipment: 
+                characterEquipment
+            }));
     }
 
     const toggleSkillProficiency = (skillCode: string) => {
@@ -279,6 +251,20 @@ export default function DnD() {
             <div>
             <h1>DND Character Sheet</h1>
             </div>
+            <ul>
+                {Object.values(characters).map((character) => {
+                    return <li key={'party_character_id_'+character.id} className="flex py-2 justify-between text-left">
+                        <div>
+                            <div className='text-xs font-medium'>{character.name} - Lv. {character.level}</div>
+                            <div className='text-3xs text-gray-400'>{character.race?.name} {character.subRace?.name} {character.class?.name}, taglia <span className='lowercase'>{character.size?.name}</span>, {character.alignment?.name}</div>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                            {/* <EditIcon onClick={() => openCharacterModal(character)} className="h-4 w-4 cursor-pointer text-white hover:text-blue-400"/>
+                            <DeleteIcon onClick={() => deleteCharacter(character.id)} className="h-4 w-4 cursor-pointer text-white hover:text-red-400"/> */}
+                        </div>
+                    </li>
+                })}
+            </ul>
             <div className='text-left text-white py-4'>
             <div className='px-4 font-thin text-lg'>Charakterbogen</div>
             <div className='flex items-center text-white px-4 mt-4'>
@@ -429,7 +415,7 @@ export default function DnD() {
                                 <div className='flex text-center'>
                                     <div className='w-1/3 rounded border flex flex-col justify-between gap-y-2'>
                                         <div></div>
-                                        <div>{getCharacterArmorClass(loadedCharacter, equipment[loadedCharacter?.id ?? ''])}</div>
+                                        <div>{getCharacterArmorClass(loadedCharacter, loadedCharacter?.equipment)}</div>
                                         <div className='text-3xs uppercase'>Rüstungsklasse</div>
                                     </div>
                                     <div className='w-1/3 rounded border flex flex-col justify-between'>
