@@ -13,15 +13,17 @@ export function uuidv4() {
 export function getBonusFromValue({
   base,
   proficiency,
+  extraProficiency,
   other,
 }: {
   base: number;
   proficiency?: { active: boolean; value: number };
+  extraProficiency?: { active: boolean; value: number };
   other?: number;
 }): { value: number; absoluteValue: number; sign: '+' | '-' } {
   const value =
     Math.floor((base - 10) / 2) +
-    (proficiency?.active ? proficiency.value : 0) +
+    (proficiency?.active ? extraProficiency?.active ? proficiency.value + extraProficiency.value: proficiency.value : 0) +
     (other ?? 0);
 
   return {

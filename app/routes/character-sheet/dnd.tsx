@@ -161,7 +161,6 @@ export default function DnD() {
     }
 
     const toggleEquipment = (equipment: Equipment) => {
-        console.log("toggleEquipment: ", equipment)
         if (loadedCharacter === undefined) return;
         const currentEquipment = loadedCharacter.equipment;
         let characterEquipment = currentEquipment ?? [];
@@ -224,6 +223,23 @@ export default function DnD() {
                     [skillCode]: {
                         ...loadedCharacter.stats.skills[skillCode],
                         proficiency: !loadedCharacter.stats.skills[skillCode].proficiency
+                    }
+                }
+            }
+            setLoadedCharacter((c) => ({ ...(c ?? loadedCharacter), stats: newStats }));
+        }
+    }
+
+    const toggleSkillExtraProficiency = (skillCode: string) => {
+        return () => {
+            if (loadedCharacter === undefined) return;
+            const newStats: Stats = {
+                ...loadedCharacter.stats,
+                skills: {
+                    ...loadedCharacter.stats.skills,
+                    [skillCode]: {
+                        ...loadedCharacter.stats.skills[skillCode],
+                        extraProficiency: !loadedCharacter.stats.skills[skillCode].extraProficiency
                     }
                 }
             }
@@ -366,8 +382,8 @@ export default function DnD() {
 
                                     return (
                                         <div key={'ability_' + ability.code} className='flex items-center space-x-1 py-0.5'>
-                                            <div onClick={toggleAbilityProficiency(ability.code)} className='rounded-full border h-2 aspect-square cursor-pointer overflow-hidden'>
-                                                {loadedCharacter?.stats?.abilities?.[ability.code]?.proficiency && <div className='bg-white h-2 w-2 rounded-full'></div>}
+                                            <div onClick={toggleAbilityProficiency(ability.code)} className='rounded-full border h-5 aspect-square cursor-pointer overflow-hidden'>
+                                                {loadedCharacter?.stats?.abilities?.[ability.code]?.proficiency && <div className='bg-white h-5 w-5 rounded-full'></div>}
                                             </div>
                                             <div key={ability.code} className='text-3xs'>{modifierValue.sign} {modifierValue.absoluteValue} {ability.name}</div>
                                         </div>
@@ -390,12 +406,19 @@ export default function DnD() {
                                         proficiency: {
                                             active: loadedCharacter?.stats?.skills?.[skill.code]?.proficiency ?? false,
                                             value: Math.ceil((loadedCharacter?.level ?? 1) / 4) + 1
+                                        },
+                                        extraProficiency: {
+                                            active: loadedCharacter?.stats?.skills?.[skill.code]?.extraProficiency ?? false,
+                                            value: Math.ceil((loadedCharacter?.level ?? 1) / 4) + 1
                                         }
                                     });
                                     return (
-                                        <div key={'skill_' + skill.code} className='flex items-center space-x-1 py-0.5'>
-                                            <div onClick={toggleSkillProficiency(skill.code)} className='rounded-full border h-2 aspect-square cursor-pointer overflow-hidden'>
-                                                {loadedCharacter?.stats?.skills?.[skill.code]?.proficiency && <div className='bg-white h-2 w-2 rounded-full'></div>}
+                                        <div key={'skill_' + skill.code} className='flex items-center py-0.5'>
+                                            <div onClick={toggleSkillExtraProficiency(skill.code)} className='rounded-full border h-3 aspect-square cursor-pointer overflow-hidden absolute ml-4 mb-2'>
+                                                {loadedCharacter?.stats?.skills?.[skill.code]?.extraProficiency && <div className='bg-white h-3 w-3 rounded-full'></div>}
+                                            </div>
+                                            <div onClick={toggleSkillProficiency(skill.code)} className='rounded-full border h-5 aspect-square cursor-pointer overflow-hidden mr-4 bg-black'>
+                                                {loadedCharacter?.stats?.skills?.[skill.code]?.proficiency && <div className='bg-white h-5 w-5 rounded-full'></div>}
                                             </div>
                                             <div key={skill.code} className='text-3xs'>{modifierValue.sign} {modifierValue.absoluteValue} {skill.name} ({abilities.find(f => f.code === skill.abilityCode)?.name?.substring(0, 3)})</div>
                                         </div>

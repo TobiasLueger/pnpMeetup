@@ -20,7 +20,7 @@ export type Stats = {
     abilities: StatsWithValue;
     skills: StatsWithValue;
 }
-export type StatsWithValue = Record<string, { proficiency?: boolean, value: number }>;
+export type StatsWithValue = Record<string, { proficiency?: boolean, extraProficiency?: boolean, value: number }>;
 
 export const CharactersContext = createContext(defaultCharactersState);
 
